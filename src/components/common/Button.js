@@ -1,8 +1,13 @@
 import React from 'react';
 
-const Button = ({ width, height, rounded, title, bgc, border }) => {
+const Button = ({ type, width, height, borderRadius, title, bgc, border, onClick }) => {
 	return (
-		<button style={{ width, height, rounded, backgroundColor: bgc, border: border ?? 0 }} className='commonButton'>
+		<button
+			type={type}
+			style={{ width, height, borderRadius, backgroundColor: bgc, border: border ?? 0 }}
+			className='commonButton'
+			onClick={onClick}
+		>
 			{title}
 		</button>
 	);

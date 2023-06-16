@@ -7,6 +7,7 @@ import About from './components/pages/About';
 import Vans from './components/pages/Vans';
 import VanDetails from './components/pages/VanDetails';
 import Login from './components/pages/Login';
+import Dashboard from './components/pages/Dashboard';
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 					<Route path='/vans' element={<Vans />} />
 					<Route path='/vans/:id' element={<VanDetails />} />
 					<Route path='/login' element={<Login />} />
+					<Route path='/login/dashboard' element={<Dashboard />} />
 				</Routes>
 				<Footer />
 			</div>

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputField from '../common/InputField';
 import { Formik, useFormik } from 'formik';
 import Button from '../common/Button';
 import * as Yup from 'yup';
+import { authApi } from '../../services/api';
+import { getAuthToken } from '../auth/getAuth';
+import { useNavigate } from 'react-router-dom';
 
-const LoginForm = ({ user, setUser }) => {
+const LoginForm = ({ isAuthroized, setIsAuthroized }) => {
+	const navigate = useNavigate();
 	const validationSchema = Yup.object().shape({
-		email: Yup.string().email('Invalid email').required('Email is required'),
+		// email: Yup.string().email('Invalid email').required('Email is required'),
 		password: Yup.string().required('Password is required'),
 	});
 
@@ -17,23 +21,26 @@ const LoginForm = ({ user, setUser }) => {
 		},
 		validationSchema,
 		onSubmit: (values) => {
-			return (
-				setUser({
-					email: values?.email,
-					password: values?.password,
-				}),
-				localStorage.setItem('user', JSON.stringify(values))
-			);
+			authApi()
+				.then((res) => {
+					console.log(res.data.token);
+					setIsAuthroized(true);
+					localStorage.setItem('token', res?.data?.token);
+				})
+				.catch(console.log);
 		},
 	});
-
+	useEffect(() => {
+		let token = getAuthToken();
+		if (token) navigate('/login/dashboard');
+	}, [isAuthroized]);
 	return (
 		<form onSubmit={formik?.handleSubmit}>
 			<div className='inputs'>
 				<InputField
 					name={'email'}
-					type={'email'}
-					placeholder={'enter your email'}
+					type={'text'}
+					placeholder={'enter your username'}
 					value={formik?.values?.email}
 					onChange={formik?.handleChange}
 				/>
@@ -53,11 +60,11 @@ const LoginForm = ({ user, setUser }) => {
 };
 
 const Login = () => {
-	const [user, setUser] = useState({});
+	const [isAuthroized, setIsAuthroized] = useState(false);
 	return (
 		<div className='loginWrapper'>
 			<h1>Sign in to your account</h1>
-			<LoginForm user={user} setUser={setUser} />
+			<LoginForm isAuthroized={isAuthroized} setIsAuthroized={setIsAuthroized} />
 		</div>
 	);
 };

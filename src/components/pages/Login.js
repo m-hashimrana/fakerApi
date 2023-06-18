@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import InputField from '../common/InputField';
 import { Formik, useFormik } from 'formik';
 import Button from '../common/Button';
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginForm = ({ isAuthroized, setIsAuthroized }) => {
 	const navigate = useNavigate();
 	const validationSchema = Yup.object().shape({
-		// email: Yup.string().email('Invalid email').required('Email is required'),
+		email: Yup.string().required('username is required'),
 		password: Yup.string().required('Password is required'),
 	});
 
@@ -24,16 +24,13 @@ const LoginForm = ({ isAuthroized, setIsAuthroized }) => {
 			authApi()
 				.then((res) => {
 					console.log(res.data.token);
-					setIsAuthroized(true);
 					localStorage.setItem('token', res?.data?.token);
+					setIsAuthroized(true);
 				})
 				.catch(console.log);
 		},
 	});
-	useEffect(() => {
-		let token = getAuthToken();
-		if (token) navigate('/login/dashboard');
-	}, [isAuthroized]);
+
 	return (
 		<form onSubmit={formik?.handleSubmit}>
 			<div className='inputs'>
@@ -59,8 +56,7 @@ const LoginForm = ({ isAuthroized, setIsAuthroized }) => {
 	);
 };
 
-const Login = () => {
-	const [isAuthroized, setIsAuthroized] = useState(false);
+const Login = ({ isAuthroized, setIsAuthroized }) => {
 	return (
 		<div className='loginWrapper'>
 			<h1>Sign in to your account</h1>

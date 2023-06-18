@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from '../../assets/images/logo.png';
 import { Link, NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ isAuthroized }) => {
 	return (
 		<div className='header'>
 			<NavLink to='/'>
@@ -12,11 +12,17 @@ const Header = () => {
 			</NavLink>
 			<ul>
 				<li>
+					{isAuthroized && (
+						<NavLink activeClassName='active' to='/host'>
+							Host
+						</NavLink>
+					)}
+				</li>
+				<li>
 					<NavLink activeClassName='active' to='/about'>
 						About
 					</NavLink>
 				</li>
-
 				<li>
 					<NavLink activeClassName='active' to='/vans'>
 						Vans

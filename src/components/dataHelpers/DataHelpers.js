@@ -98,10 +98,10 @@ export const vans = [
 ];
 
 export const tabs = [
-	{ id: 1, title: 'Dashboard' },
-	{ id: 2, title: 'Income' },
-	{ id: 3, title: 'Vans' },
-	{ id: 4, title: 'Review' },
+	{ id: 1, title: 'Dashboard', path: '/host' },
+	{ id: 2, title: 'Income', path: '/host/income' },
+	{ id: 3, title: 'Vans', path: '/host/vanslist' },
+	{ id: 4, title: 'Review', path: '/host/review' },
 ];
 
 export const reviews = [

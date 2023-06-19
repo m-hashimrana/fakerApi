@@ -1,4 +1,4 @@
-import Host from './components/pages/Host';
+import Host, { HostApp } from './components/pages/Host';
 import Reviews from './components/pages/Reviews';
 import About from './components/pages/About';
 import Vans from './components/pages/Vans';
@@ -11,6 +11,11 @@ import Footer from './components/common/Footer';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAuthToken } from './components/auth/getAuth';
+import { VanList } from './components/host/Tabs';
+import Dashboard from './components/pages/Dashboard';
+import IncomeChart from './components/host/IncomeChart';
+import VanDetailsCard from './components/host/VanDetailsCard';
+import VanCard from './components/host/VanCard';
 
 function App() {
 	const [isAuthroized, setIsAuthroized] = useState(false);
@@ -18,7 +23,7 @@ function App() {
 
 	useEffect(() => {
 		let token = getAuthToken();
-		if (token) navigate('/host');
+		// if (token) navigate('/host');
 		setIsAuthroized(true);
 	}, [isAuthroized]);
 
@@ -32,8 +37,14 @@ function App() {
 					<Route path='/vans' element={<Vans />} />
 					<Route path='/vans/:id' element={<VanDetails />} />
 					<Route path='/login' element={<Login isAuthroized={isAuthroized} setIsAuthroized={setIsAuthroized} />} />
-					<Route path='/host' element={<Host />} />
-					<Route path='/host/review' element={<Reviews />} />
+					<Route path='host' element={<Host />}>
+						<Route path='' element={<Dashboard />} />
+						<Route path='income' element={<IncomeChart />} />
+						<Route path='vanslist' element={<VanList />}>
+							<Route path='vanslist/:id' element={<VanDetailsCard />} />
+						</Route>
+						<Route path='review' element={<Reviews />} />
+					</Route>
 				</Routes>
 				<Footer />
 			</div>

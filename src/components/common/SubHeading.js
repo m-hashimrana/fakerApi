@@ -1,12 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const SubHeading = ({ text, showDetails, action, route }) => {
-	const navigate = useNavigate();
 	return (
 		<p className='flexBetween'>
 			<span>{text}</span>
-			{showDetails && <span onClick={route}>{action}</span>}
+			{showDetails && (
+				<NavLink className='tab' to={route}>
+					{action}
+				</NavLink>
+			)}
 		</p>
 	);
 };

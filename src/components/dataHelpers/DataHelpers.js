@@ -103,6 +103,11 @@ export const tabs = [
 	{ id: 3, title: 'Vans', path: '/host/vanslist' },
 	{ id: 4, title: 'Review', path: '/host/review' },
 ];
+export const cardTabs = [
+	{ id: 1, title: 'Details', path: 'details' },
+	{ id: 2, title: 'Pricing', path: 'pricing' },
+	{ id: 3, title: 'Photos', path: 'photos' },
+];
 
 export const reviews = [
 	{

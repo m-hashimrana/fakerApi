@@ -28,6 +28,10 @@
 		font-size: 32px;
 		font-weight: 700;
 	}
+	h3 {
+		font-size: 26px;
+		font-weight: 700;
+	}
 	.padding26 {
 		padding-left: 26px;
 		padding-right: 26px;
@@ -306,6 +310,35 @@
 			.price {
 				font-size: 48px;
 				font-weight: bolder;
+			}
+		}
+		.card {
+			background-color: #fff;
+			padding: 23px;
+			.vanImageAndName {
+				display: flex;
+				align-items: center;
+				.imageWrapper {
+					width: 170px;
+					height: 170px;
+					margin-right: 20px;
+				}
+				.nameWrapper {
+					display: flex;
+					flex-direction: column;
+					h4 {
+						margin: 20px 0;
+					}
+					span {
+						display: flex;
+						p {
+							margin: unset;
+							font-size: 18px;
+							font-weight: bold;
+							margin-right: 10px;
+						}
+					}
+				}
 			}
 		}
 	}

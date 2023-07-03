@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 const VanCard = ({ van, Image }) => {
 	const navigate = useNavigate();
+	const { id } = van;
 	return (
 		<div
 			key={van?.id}
-			onClick={() => navigate(`${van?.id}`)}
+			onClick={() => navigate(`${id}`, { state: { van } })}
 			style={{
 				background: '#fff',
 				display: 'flex',

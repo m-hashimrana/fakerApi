@@ -18,11 +18,11 @@ export const VanList = ({ isSliced, showDetails }) => {
 	);
 };
 
-const Tabs = () => {
+const Tabs = ({ tabs }) => {
 	return (
 		<div className='tabs'>
 			{tabs?.map((tab) => (
-				<NavLink className='tab' activeClassName='active' key={tab?.id} to={tab?.path}>
+				<NavLink className='tab' activeClassName='active' key={tab?.id} to={tab?.path} end>
 					{tab?.title}
 				</NavLink>
 			))}

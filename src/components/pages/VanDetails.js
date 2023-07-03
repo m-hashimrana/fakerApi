@@ -3,9 +3,9 @@ import GoBackIcon from '../../assets/images/Arrow.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Van from '../../assets/images/van.png';
 
-import Card from '../common/Card';
 import Label from '../common/Label';
 import Button from '../common/Button';
+
 const GoBack = ({ page }) => {
 	const navigate = useNavigate();
 	return (
